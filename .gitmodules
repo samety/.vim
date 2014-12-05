@@ -19,3 +19,6 @@
 [submodule "bundle/vim-log-syntax"]
 	path = bundle/vim-log-syntax
 	url = https://github.com/dzeban/vim-log-syntax
+[submodule "bundle/vim-sensible"]
+	path = bundle/vim-sensible
+	url = https://github.com/tpope/vim-sensible
