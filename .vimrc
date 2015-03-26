@@ -41,6 +41,14 @@ syntax on
 
 autocmd BufWritePost .vimrc source $MYVIMRC
 autocmd BufWritePre *.py retab
+<<<<<<< HEAD
+=======
+autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
+autocmd FileType log set wrap
+autocmd BufWinEnter * :filetype detect
+autocmd BufWritePre * :%s/\s\+$//e
+autocmd BufWritePost *.py call Pep8()
+>>>>>>> 1a25b64... pep8 plugin
 
 function! s:DiffSVN()
     let filetype=&ft
