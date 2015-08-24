@@ -30,6 +30,7 @@ vmap <Leader>b :<C-U>!svn blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'
 nnoremap <silent> <Leader>M :execute 'match Search /\%'.line('.').'l/'<CR>
 nnoremap <silent> <Leader>m :execute 'match Search /\<<C-R><C-W>\>/'<CR>
 nnoremap <silent> <Leader>l :nohlsearch<CR> :match<CR>
+imap <C-U> <Esc>gUiw`]a
 
 set makeprg=make\ -j\ 8\ -k\ -C\ Debug
 
@@ -53,6 +54,13 @@ function! s:DiffOff()
     close
     diffoff
 endfunction
+function! s:PrevSVN()
+    let filetype=&ft
+    vnew | exe "%!svn cat " . expand("#:p")
+    exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+endfunction
 
 com! DiffSVN call s:DiffSVN()
 com! DiffOff call s:DiffOff()
+com! PrevSVN call s:PrevSVN()
+com! Ctag exe "!ctags -R --c++-kinds=+p ."
