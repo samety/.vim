@@ -21,7 +21,7 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
-noremap <Leader>t :TagbarToggle<CR> 
+noremap <Leader>t :TagbarToggle<CR>
 noremap <Leader>f :silent vimgrep /\<<C-R><C-W>\>/j ./**/*.cc ./**/*.cpp ./**/*.h <Bar> :copen <CR>
 noremap <Leader>d :silent vimgrep /\<<C-R><C-W>\>/j  <Bar> :cw <left><left><left><left><left><left><left>
 
@@ -41,14 +41,12 @@ syntax on
 
 autocmd BufWritePost .vimrc source $MYVIMRC
 autocmd BufWritePre *.py retab
-<<<<<<< HEAD
-=======
 autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
 autocmd FileType log set wrap
 autocmd BufWinEnter * :filetype detect
 autocmd BufWritePre * :%s/\s\+$//e
-autocmd BufWritePost *.py call Pep8()
->>>>>>> 1a25b64... pep8 plugin
+" autocmd BufWritePost *.py call Pep8()
+autocmd BufWritePost *.py call Flake8()
 
 function! s:DiffSVN()
     let filetype=&ft
