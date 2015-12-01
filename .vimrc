@@ -25,7 +25,7 @@ noremap <Leader>t :TagbarToggle<CR>
 noremap <Leader>f :silent vimgrep /\<<C-R><C-W>\>/j ./**/*.cc ./**/*.cpp ./**/*.h <Bar> :copen <CR>
 noremap <Leader>d :silent vimgrep /\<<C-R><C-W>\>/j  <Bar> :cw <left><left><left><left><left><left><left>
 
-vmap <Leader>b :<C-U>!svn blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
+vmap <Leader>b :<C-U>!svn blame -v <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
 
 nnoremap <silent> <Leader>M :execute 'match Search /\%'.line('.').'l/'<CR>
 nnoremap <silent> <Leader>m :execute 'match Search /\<<C-R><C-W>\>/'<CR>
@@ -71,4 +71,4 @@ endfunction
 com! DiffSVN call s:DiffSVN()
 com! DiffOff call s:DiffOff()
 com! PrevSVN call s:PrevSVN()
-com! Ctag exe "!ctags -R --c++-kinds=+p ."
+com! Ctag exe "!ctags -R --c++-kinds=+p --python-kinds=-i --exclude=*lib64* --exclude=*.css --exclude=*.html --exclude=*.json --exclude=Makefile ."
