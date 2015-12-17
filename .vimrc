@@ -70,3 +70,6 @@ com! DiffSVN call s:DiffSVN()
 com! DiffOff call s:DiffOff()
 com! PrevSVN call s:PrevSVN()
 com! Ctag exe "!ctags -R --c++-kinds=+p --python-kinds=-i --exclude=*lib64* --exclude=*.css --exclude=*.html --exclude=*.json --exclude=Makefile ."
+
+let $GCC_COLORS = ''
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
