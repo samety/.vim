@@ -22,9 +22,6 @@
 [submodule "bundle/vim-sensible"]
 	path = bundle/vim-sensible
 	url = https://github.com/tpope/vim-sensible
-[submodule "bundle/headerguard"]
-	path = bundle/headerguard
-	url = https://github.com/vim-scripts/headerguard
 [submodule "bundle/vim-flake8"]
 	path = bundle/vim-flake8
 	url = https://github.com/nvie/vim-flake8

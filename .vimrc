@@ -1,6 +1,6 @@
 set number
 set mouse=a
-highlight LineNr ctermbg=DarkGrey
+highlight LineNr ctermbg=DarkGrey ctermfg=Yellow
 highlight Search ctermbg=DarkYellow
 
 set expandtab
