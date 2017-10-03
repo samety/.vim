@@ -28,3 +28,9 @@
 [submodule "bundle/vim-fugitive"]
 	path = bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive
+[submodule "bundle/tpope-vim-abolish"]
+	path = bundle/tpope-vim-abolish
+	url = https://github.com/tpope/tpope-vim-abolish
+[submodule "bundle/vim-repeat"]
+	path = bundle/vim-repeat
+	url = https://github.com/tpope/vim-repeat
