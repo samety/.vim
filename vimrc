@@ -44,13 +44,22 @@ syntax on
 set nowrap
 
 autocmd BufWritePost .vimrc source $MYVIMRC
-autocmd BufWritePre *.py retab
-autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
+" autocmd BufWritePre *.py retab
+" autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
 autocmd FileType log set wrap
 autocmd BufWinEnter * :filetype detect
 autocmd BufWritePre *.cc :%s/\s\+$//e
 autocmd BufWritePre *.h :%s/\s\+$//e
-autocmd BufWritePost *.py call Flake8()
+" autocmd BufWritePost *.py call Flake8()
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 function! s:SortGitModules()
 	%s/\v\n\t/@@@/
