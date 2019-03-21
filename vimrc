@@ -54,6 +54,8 @@ autocmd BufWritePre *.cc :%s/\s\+$//e
 autocmd BufWritePre *.h :%s/\s\+$//e
 autocmd BufWritePost *.py call Flake8()
 
+let g:flake8_show_in_gutter=1
+
 function! s:SortGitModules()
 	%s/\v\n\t/@@@/
 	%sort
