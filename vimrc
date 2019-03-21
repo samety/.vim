@@ -26,6 +26,8 @@ noremap <Leader>t :TagbarToggle<CR>
 
 set wildignore+=./Debug/**
 set wildignore+=./Release/**
+set wildignore+=./venv/**
+
 noremap <Leader>f :silent vimgrep /\<<C-R><C-W>\>/j ./**/*.cc ./**/*.cpp ./**/*.h ./**/*.inl ./**/*.proto ./**/*.py ./**/*.txt ./**/*.cmake <Bar> :copen <CR>
 noremap <Leader>d :silent vimgrep /\<<C-R><C-W>\>/j  <Bar> :cw <left><left><left><left><left><left><left>
 
@@ -50,16 +52,7 @@ autocmd FileType log set wrap
 autocmd BufWinEnter * :filetype detect
 autocmd BufWritePre *.cc :%s/\s\+$//e
 autocmd BufWritePre *.h :%s/\s\+$//e
-" autocmd BufWritePost *.py call Flake8()
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+autocmd BufWritePost *.py call Flake8()
 
 function! s:SortGitModules()
 	%s/\v\n\t/@@@/
@@ -68,7 +61,7 @@ function! s:SortGitModules()
 endfunction
 com! SortGitModules call s:SortGitModules()
 
-com! Ctag exe "!ctags -R --c++-kinds=+p --python-kinds=-i --exclude=*lib64* --exclude=*.css --exclude=*.html --exclude=*.json --exclude=Makefile --exclude=optitest/venv ."
+com! Ctag exe "!ctags -R --c++-kinds=+p --python-kinds=-i --exclude=*lib64* --exclude=*.css --exclude=*.html --exclude=*.json --exclude=Makefile --exclude=venv ."
 
 let $GCC_COLORS = ''
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
