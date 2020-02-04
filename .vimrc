@@ -24,9 +24,15 @@ noremap <C-l> <C-w>l
 
 noremap <Leader>t :TagbarToggle<CR>
 
-set wildignore+=./Debug/**
-set wildignore+=./Release/**
-noremap <Leader>f :silent vimgrep /\<<C-R><C-W>\>/j ./**/*.cc ./**/*.cpp ./**/*.h ./**/*.inl ./**/*.proto ./**/*.py ./**/*.txt ./**/*.cmake <Bar> :copen <CR>
+set wildignore+=./.build/**
+set wildignore+=*.o,*.obj,*.pyc
+set wildignore+=./venv/**
+set wildignore+=./.venv/**
+set wildignore+=./.venv3/**
+set wildignore+=./.tox/**
+set wildignore+=./*.egg-info/**
+
+noremap <Leader>f :silent vimgrep /\<<C-R><C-W>\>/j ./**/*.cc ./**/*.cpp ./**/*.h ./**/*.inl ./**/*.proto ./**/*.py ./**/*.txt ./**/*.cmake ./**/*.xsd <Bar> :copen <CR>
 noremap <Leader>d :silent vimgrep /\<<C-R><C-W>\>/j  <Bar> :cw <left><left><left><left><left><left><left>
 
 nnoremap <silent> <Leader>M :execute 'match Search /\%'.line('.').'l/'<CR>
@@ -34,7 +40,8 @@ nnoremap <silent> <Leader>m :execute 'match Search /\<<C-R><C-W>\>/'<CR>
 nnoremap <silent> <Leader>l :nohlsearch<CR> :match<CR>
 imap <C-U> <Esc>gUiw`]a
 
-set makeprg=make\ -j\ 8\ -k\ -C\ Debug
+set makeprg=make\ -j\ 8\ -k\ -C\ .build
+noremap <F7> :AsyncRun make -j 8 -k -C .build <cr>
 
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
@@ -59,7 +66,11 @@ function! s:SortGitModules()
 endfunction
 com! SortGitModules call s:SortGitModules()
 
-com! Ctag exe "!ctags -R --c++-kinds=+p --python-kinds=-i --exclude=*lib64* --exclude=*.css --exclude=*.html --exclude=*.json --exclude=Makefile --exclude=optitest/venv ."
+com! Ctag exe "!ctags -R --c++-kinds=+p --python-kinds=-i --exclude=*lib64* --exclude=*.css --exclude=*.json --exclude=Makefile --exclude=.venv3 --exclude=.venv --exclude=.tox ."
+
+com! Pytest exe "!python setup.py test"
 
 let $GCC_COLORS = ''
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+
+let @m = 'iMOC(f lvedh^wapa, f xf;i)j^'
