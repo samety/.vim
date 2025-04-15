@@ -34,3 +34,6 @@
 [submodule "pack/plugins/start/vim-abolish"]
 	path = pack/plugins/start/vim-abolish
 	url = https://github.com/tpope/vim-abolish.git
+[submodule "pack/plugins/start/vim-ai"]
+	path = pack/plugins/start/vim-ai
+	url = https://github.com/madox2/vim-ai.git
