@@ -31,6 +31,6 @@
 [submodule "pack/plugins/start/vim-flake8"]
 	path = pack/plugins/start/vim-flake8
 	url = https://github.com/nvie/vim-flake8.git
-[submodule "pack/plugins/start/tpope-vim-abolish"]
-	path = pack/plugins/start/tpope-vim-abolish
+[submodule "pack/plugins/start/vim-abolish"]
+	path = pack/plugins/start/vim-abolish
 	url = https://github.com/tpope/vim-abolish.git

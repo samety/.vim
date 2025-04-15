@@ -1,5 +1,5 @@
 set number
-set mouse=a
+"set mouse=a
 
 highlight LineNr cterm=None ctermbg=DarkGrey ctermfg=Yellow
 highlight Search cterm=None ctermbg=DarkYellow ctermfg=Black
@@ -12,7 +12,7 @@ set noswapfile
 set hlsearch
 set incsearch
 
-set list
+"set list
 highlight SpecialKey ctermfg=66
 
 let mapleader=","
