@@ -44,9 +44,6 @@ imap <C-U> <Esc>gUiw`]a
 set makeprg=make\ -j\ 8\ -k\ -C\ .build
 noremap <F7> :AsyncRun make -j 8 -k -C .build <cr>
 
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-execute pathogen#infect()
-execute pathogen#helptags()
 syntax on
 
 set nowrap
