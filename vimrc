@@ -79,3 +79,8 @@ let $GCC_COLORS = ''
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 let @m = 'iMOC( lvedh^waa,  xf;i)^'
+
+let g:vim_ai_backend = 'openai'
+let g:vim_ai_model = 'gpt-3.5-turbo' " Free-tier compatible
+let g:vim_ai_max_tokens = 50
+let g:vim_ai_roles_config_file = '~/.vim/vimai_roles.ini'
