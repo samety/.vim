@@ -1,5 +1,5 @@
 set number
-set mouse=a
+"set mouse=a
 
 highlight LineNr cterm=None ctermbg=DarkGrey ctermfg=Yellow
 highlight Search cterm=None ctermbg=DarkYellow ctermfg=Black
@@ -12,7 +12,7 @@ set noswapfile
 set hlsearch
 set incsearch
 
-set list
+"set list
 highlight SpecialKey ctermfg=66
 
 let mapleader=","
@@ -25,14 +25,15 @@ noremap <C-l> <C-w>l
 noremap <Leader>t :TagbarToggle<CR>
 
 set wildignore+=./.build/**
-set wildignore+=*.o,*.obj,*.pyc
+set wildignore+=*.o,*.obj,*.pyc,*.log
 set wildignore+=./venv/**
 set wildignore+=./.venv/**
 set wildignore+=./.venv3/**
 set wildignore+=./.tox/**
 set wildignore+=./*.egg-info/**
+set wildignore+=./build/**
 
-noremap <Leader>f :silent vimgrep /\<<C-R><C-W>\>/j ./**/*.cc ./**/*.cpp ./**/*.h ./**/*.inl ./**/*.proto ./**/*.py ./**/*.txt ./**/*.cmake ./**/*.xsd <Bar> :copen <CR>
+noremap <Leader>f :silent vimgrep /\<<C-R><C-W>\>/j ./**/*.cc ./**/*.cpp ./**/*.h ./**/*.inl ./**/*.proto ./**/*.py ./**/*.txt ./**/*.cmake ./**/*.xsd ./**/*.cfg ./**/*.html ./**/*.json ./**/*.yml ./tox.ini ./pyproject.toml ./**/*.yaml ./**/*.manifest <Bar> :copen <CR>
 noremap <Leader>d :silent vimgrep /\<<C-R><C-W>\>/j  <Bar> :cw <left><left><left><left><left><left><left>
 
 nnoremap <silent> <Leader>M :execute 'match Search /\%'.line('.').'l/'<CR>
@@ -43,16 +44,13 @@ imap <C-U> <Esc>gUiw`]a
 set makeprg=make\ -j\ 8\ -k\ -C\ .build
 noremap <F7> :AsyncRun make -j 8 -k -C .build <cr>
 
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-execute pathogen#infect()
-execute pathogen#helptags()
 syntax on
 
 set nowrap
 
 autocmd BufWritePost .vimrc source $MYVIMRC
-" autocmd BufWritePre *.py retab
-" autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
+autocmd BufWritePre *.py retab
+autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
 autocmd FileType log set wrap
 autocmd BufWinEnter * :filetype detect
 autocmd BufWritePre *.cc :%s/\s\+$//e
@@ -68,11 +66,17 @@ function! s:SortGitModules()
 endfunction
 com! SortGitModules call s:SortGitModules()
 
-com! Ctag exe "!ctags -R --c++-kinds=+p --python-kinds=-i --exclude=*lib64* --exclude=*.css --exclude=*.json --exclude=Makefile --exclude=.venv3 --exclude=.venv --exclude=.tox ."
+function! s:ExecuteMyPy()
+	silent !clear
+	execute "!mypy --ignore-missing-imports --follow-imports=skip " . bufname("%")
+endfunction
+com! Mypy call s:ExecuteMyPy()
+
+com! Ctag exe "!ctags -R --c++-kinds=+p --python-kinds=-i --exclude=*lib64* --exclude=*.css --exclude=*.json --exclude=Makefile --exclude=.venv3 --exclude=.venv --exclude=.tox --exclude=build --exclude=temp ."
 
 com! Pytest exe "!python setup.py test"
 
 let $GCC_COLORS = ''
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
-let @m = 'iMOC(f lvedh^wapa, f xf;i)j^'
+let @m = 'iMOC( lvedh^waa,  xf;i)^'
